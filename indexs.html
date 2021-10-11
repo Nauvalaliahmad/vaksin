@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!--akhir bootstrap-->
+
+ <!-- my CSS-->
+ <link rel="stylesheet" href="style.css">
+ <!-- Akhir MY CSS-->
+
+    <title>VAKSIN</title>
+  </head>
+  <body id="home">
+       
+
+<!-- Contact me-->
+<section id="contact" style="margin-right: -2%; border: 2px; background-color: rgb(174, 174, 230);">
+    <div class="container justify-content-center">
+        <div class="row text-center mb-4">
+            <div class="col">
+                <h2>Kamu Udah Vaksin?</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+                     <strong>Oke jhonn!</strong> Pesanmu udah aku terima. jangan lupa bahagia :)
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                 <form name="form-vaksin">
+                  <div class="mb-3 fw-bold">
+                    <label for="name" class="form-label">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="name" name="nama"> 
+                </div>
+                  <div class="mb-3 fw-bold">
+                    <label for="npm" class="form-label">Npm </label>
+                    <input type="text" class="form-control" id="npm" aria-describedby="npm" name="npm"> 
+                </div>
+                  <div class="mb-3 fw-bold">
+                    <label for="vaksin1" class="form-label">Vaksin tahap 1  </label>
+                  <br>
+                    <select name="vaksin1">
+                        <option value="" selected="" name="vaksin1">--Pilih dong--</option>
+                        <option value="Sudah">udah dong</option>
+                        <option value="Belum">Belum</option>
+                    
+                        </select>
+                </div>
+               
+                  <div class="mb-3 fw-bold">
+                    <label for="vaksin2" class="form-label">Vaksin tahap 2  </label> 
+                    <br>
+                       <select name="vaksin2">
+                        <option value="" selected="" name=vaksin2>--Pilih dong--</option>
+                        <option value="Sudah">udah dong</option>
+                        <option value="Belum">Belum</option>
+                    
+                        </select>
+                    
+                
+ 
+ 
+                </div>
+               
+         
+
+  <button type="submit" class="btn btn-primary btn-kirim mb-4">Kirim</button>
+
+  <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+</button>
+</form>
+            </div>
+        </div>
+    </div>
+   
+</section>
+<!-- Akhir contact me-->
+
+
+
+<!--footer-->
+<footer class="bg-primary text-white text-center " style="margin-right: -2%;">
+    <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a href="https//www.instagram.com/bg_proff/" class="text-white fw-bold">Nauval Ali Ahmad</a></p>
+</footer>
+<!--akhir footer-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+  <!--Form google sheet-->
+  <script>
+     const scriptURL = 'https://script.google.com/macros/s/AKfycbwqrPemPDwiHpOikGoPP_S4_Gl6AXTP3ibvTAATKJQMFjDJuaScDD9UljdHczFJt3CiIg/exec'
+     const form = document.forms['form-vaksin']
+     const btnKirim = document.querySelector('.btn-kirim')
+     const btnLoading = document.querySelector('.btn-loading')
+     const myAlret = document.querySelector('.my-alert')
+
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          //ketika tombol submit di klik
+          //tampil loading, hilang kirim
+          btnLoading.classList.toggle('d-none')
+          btnKirim.classList.toggle('d-none')
+         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+             .then(response => {
+                   //tampil kirim, hilang loading
+                 btnLoading.classList.toggle('d-none');
+                 btnKirim.classList.toggle('d-none');
+                 //tampilkan alert
+                 myAlret.classList.toggle('d-none');
+                 //riset form
+                 form.reset();
+                 console.log('Success!', response);
+            })
+            .catch(error => console.error('Error!', error.message))
+  })
+</script>
+<!--Akhir Form-->
+
+  </body>
+</html>
